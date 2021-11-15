@@ -1,0 +1,64 @@
+# Lista-
+ListView v1.0 
+package com.example.mylista;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+
+public class Datos extends BaseAdapter {
+ LayoutInflater inflater=null;
+
+    Context context;
+    String[] titulo;
+    String[] descripcion;
+    int [] portada;
+
+
+    public Datos(Context context, String[] titulo, String[] descripcion, int[] portada) {
+        this.context = context;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.portada = portada;
+
+        //inicializar
+        inflater=(LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+    }
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+       View vista = inflater.inflate(R.layout.item_fila,null);
+       //referenciar
+        TextView Titulo = vista.findViewById(R.id.Titulo);
+        TextView Descripcion = vista.findViewById(R.id.Descripcion);
+        ImageView Portada = vista.findViewById(R.id.Portada);
+
+        //asignar datos a cada una de las posiciones
+
+        Titulo.setText(titulo[i]);
+        Descripcion.setText(descripcion[i]);
+        Portada.setImageResource(portada[i]);
+
+        return vista;
+    }
+
+    @Override
+    public int getCount() {
+        return portada.length;
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
+
+}
